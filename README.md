@@ -10,6 +10,6 @@
 - Themes with the ability to arbitrarily choose a new background and text color
 - Word count, displayed in the status bar
 
-[I documented a Visual Basic version of this app on Thurrott.com](https://www.thurrott.com/tag/the-winforms-notepad-project). And I am now updating the app with some more modern features and bug fixes. 
+[I documented a Visual Basic version of this app on Thurrott.com](https://www.thurrott.com/tag/the-winforms-notepad-project). And I am now updating this C# version of the app with some more modern features and bug fixes. 
 
 This version of .NETpad should work on all supported versions of Windows 10 and Windows 11.
