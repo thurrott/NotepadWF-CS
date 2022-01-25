@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle(".NETpad")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A Notepad replacement written in C#, .NET Framework 4.7x, and Windows Forms")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Paul Thurrott")]
 [assembly: AssemblyProduct(".NETpad")]
-[assembly: AssemblyCopyright("Copyright © 2020 Paul Thurrott")]
+[assembly: AssemblyCopyright("Copyright © 2022 Paul Thurrott")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

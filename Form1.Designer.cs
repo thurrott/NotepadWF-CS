@@ -82,10 +82,17 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.autoSaveToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSpacer3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.positionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSpacer2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.wordCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSpacer1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.zoomToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -95,13 +102,14 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.AutoSize = false;
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -113,7 +121,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 35);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -132,7 +140,7 @@
             this.toolStripSeparator2,
             this.ExitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 33);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -237,7 +245,7 @@
             this.selectAllToolStripMenuItem,
             this.insertTimeDateToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 29);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 33);
             this.editToolStripMenuItem.Text = "&Edit";
             // 
             // undoToolStripMenuItem
@@ -374,20 +382,20 @@
             this.wordWrapToolStripMenuItem,
             this.fontToolStripMenuItem});
             this.formatToolStripMenuItem.Name = "formatToolStripMenuItem";
-            this.formatToolStripMenuItem.Size = new System.Drawing.Size(85, 29);
+            this.formatToolStripMenuItem.Size = new System.Drawing.Size(85, 33);
             this.formatToolStripMenuItem.Text = "F&ormat";
             // 
             // wordWrapToolStripMenuItem
             // 
             this.wordWrapToolStripMenuItem.Name = "wordWrapToolStripMenuItem";
-            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(206, 34);
             this.wordWrapToolStripMenuItem.Text = "&Word Wrap";
             this.wordWrapToolStripMenuItem.Click += new System.EventHandler(this.wordWrapToolStripMenuItem_Click);
             // 
             // fontToolStripMenuItem
             // 
             this.fontToolStripMenuItem.Name = "fontToolStripMenuItem";
-            this.fontToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.fontToolStripMenuItem.Size = new System.Drawing.Size(206, 34);
             this.fontToolStripMenuItem.Text = "&Font";
             this.fontToolStripMenuItem.Click += new System.EventHandler(this.fontToolStripMenuItem_Click);
             // 
@@ -398,7 +406,7 @@
             this.zoomToolStripMenuItem,
             this.statusBarToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 33);
             this.viewToolStripMenuItem.Text = "&View";
             // 
             // toolStripMenuItem1
@@ -412,7 +420,7 @@
             this.selectTextColorToolStripMenuItem,
             this.selectBackgroundColorToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(192, 34);
             this.toolStripMenuItem1.Text = "&Theme";
             // 
             // blackOnWhiteDefaultToolStripMenuItem
@@ -469,7 +477,7 @@
             this.zoomOutToolStripMenuItem,
             this.restoreDefaultZoomToolStripMenuItem});
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(192, 34);
             this.zoomToolStripMenuItem.Text = "&Zoom";
             // 
             // zoomInToolStripMenuItem
@@ -503,7 +511,7 @@
             this.statusBarToolStripMenuItem.Checked = true;
             this.statusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(192, 34);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click);
             // 
@@ -512,7 +520,7 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 33);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutToolStripMenuItem
@@ -527,52 +535,94 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.autoSaveToolStripStatusLabel,
+            this.toolStripStatusLabel5,
+            this.toolStripSpacer3,
             this.positionToolStripStatusLabel,
+            this.toolStripStatusLabel3,
+            this.toolStripSpacer2,
             this.wordCountToolStripStatusLabel,
+            this.toolStripStatusLabel2,
+            this.toolStripSpacer1,
             this.zoomToolStripStatusLabel,
             this.toolStripStatusLabel4,
             this.toolStripStatusLabel1});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 598);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 607);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1200, 44);
+            this.statusStrip1.Size = new System.Drawing.Size(1200, 35);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // autoSaveToolStripStatusLabel
             // 
-            this.autoSaveToolStripStatusLabel.Margin = new System.Windows.Forms.Padding(25, 9, 75, 6);
+            this.autoSaveToolStripStatusLabel.Margin = new System.Windows.Forms.Padding(25, 3, 75, 3);
             this.autoSaveToolStripStatusLabel.Name = "autoSaveToolStripStatusLabel";
             this.autoSaveToolStripStatusLabel.Size = new System.Drawing.Size(128, 29);
             this.autoSaveToolStripStatusLabel.Text = "Auto Save: Off";
             this.autoSaveToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.autoSaveToolStripStatusLabel.Click += new System.EventHandler(this.autoSaveToolStripStatusLabel_Click);
             // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.AutoSize = false;
+            this.toolStripStatusLabel5.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(5, 28);
+            // 
+            // toolStripSpacer3
+            // 
+            this.toolStripSpacer3.AutoSize = false;
+            this.toolStripSpacer3.Name = "toolStripSpacer3";
+            this.toolStripSpacer3.Size = new System.Drawing.Size(5, 28);
+            // 
             // positionToolStripStatusLabel
             // 
-            this.positionToolStripStatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
-            this.positionToolStripStatusLabel.Margin = new System.Windows.Forms.Padding(25, 9, 75, 6);
+            this.positionToolStripStatusLabel.Margin = new System.Windows.Forms.Padding(0, 3, 75, 3);
             this.positionToolStripStatusLabel.Name = "positionToolStripStatusLabel";
-            this.positionToolStripStatusLabel.Size = new System.Drawing.Size(99, 29);
+            this.positionToolStripStatusLabel.Size = new System.Drawing.Size(95, 29);
             this.positionToolStripStatusLabel.Text = "Ln 1, Col 1";
             this.positionToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.AutoSize = false;
+            this.toolStripStatusLabel3.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(5, 28);
+            // 
+            // toolStripSpacer2
+            // 
+            this.toolStripSpacer2.AutoSize = false;
+            this.toolStripSpacer2.Name = "toolStripSpacer2";
+            this.toolStripSpacer2.Size = new System.Drawing.Size(5, 28);
+            // 
             // wordCountToolStripStatusLabel
             // 
-            this.wordCountToolStripStatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
-            this.wordCountToolStripStatusLabel.Margin = new System.Windows.Forms.Padding(25, 9, 75, 6);
+            this.wordCountToolStripStatusLabel.Margin = new System.Windows.Forms.Padding(0, 3, 75, 3);
             this.wordCountToolStripStatusLabel.Name = "wordCountToolStripStatusLabel";
-            this.wordCountToolStripStatusLabel.Size = new System.Drawing.Size(80, 29);
+            this.wordCountToolStripStatusLabel.Size = new System.Drawing.Size(76, 29);
             this.wordCountToolStripStatusLabel.Text = "0 words";
             this.wordCountToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.AutoSize = false;
+            this.toolStripStatusLabel2.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(5, 28);
+            // 
+            // toolStripSpacer1
+            // 
+            this.toolStripSpacer1.AutoSize = false;
+            this.toolStripSpacer1.Name = "toolStripSpacer1";
+            this.toolStripSpacer1.Size = new System.Drawing.Size(5, 28);
+            // 
             // zoomToolStripStatusLabel
             // 
-            this.zoomToolStripStatusLabel.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
-            this.zoomToolStripStatusLabel.Margin = new System.Windows.Forms.Padding(25, 9, 75, 6);
+            this.zoomToolStripStatusLabel.Margin = new System.Windows.Forms.Padding(0, 3, 75, 3);
             this.zoomToolStripStatusLabel.Name = "zoomToolStripStatusLabel";
-            this.zoomToolStripStatusLabel.Size = new System.Drawing.Size(61, 29);
+            this.zoomToolStripStatusLabel.Size = new System.Drawing.Size(57, 29);
             this.zoomToolStripStatusLabel.Text = "100%";
             this.zoomToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -580,17 +630,24 @@
             // 
             this.toolStripStatusLabel4.Margin = new System.Windows.Forms.Padding(150, 9, 0, 6);
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(0, 29);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(0, 20);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 28);
+            this.toolStripStatusLabel1.Spring = true;
             // 
             // richTextBox1
             // 
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(0, 31);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 35);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1200, 567);
+            this.richTextBox1.Size = new System.Drawing.Size(1200, 572);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
@@ -625,12 +682,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 30000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 37);
-            this.toolStripStatusLabel1.Spring = true;
             // 
             // Form1
             // 
@@ -724,6 +775,12 @@
         private System.Windows.Forms.ToolStripMenuItem autoSaveToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripSpacer3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripSpacer2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripSpacer1;
     }
 }
 

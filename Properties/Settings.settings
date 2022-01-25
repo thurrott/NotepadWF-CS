@@ -5,9 +5,6 @@
     <Setting Name="MyLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">150, 150</Value>
     </Setting>
-    <Setting Name="MySize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">1800, 1600</Value>
-    </Setting>
     <Setting Name="MyFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Consolas, 12pt</Value>
     </Setting>
@@ -25,6 +22,9 @@
     </Setting>
     <Setting Name="MyAutoSave" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MySize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1200, 800</Value>
     </Setting>
   </Settings>
 </SettingsFile>

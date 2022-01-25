@@ -27,7 +27,7 @@ namespace NotePadWF_CS
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
+        {        
             Text = Application.ProductName;
             aboutToolStripMenuItem.Text = "About " + Application.ProductName;
 
