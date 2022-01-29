@@ -100,7 +100,22 @@ namespace NotePadWF_CS
                 Application.Exit();
             }
         }
-
+        
+        int WordCount(string text)
+        {
+            int count = 0;
+            for (int i = 0; i < text.Length; ++i)
+            {
+                if (!char.IsWhiteSpace(text[i]))
+                {
+                    ++count;
+                    while (++i < text.Length && !char.IsWhiteSpace(text[i]))
+                        ;
+                }
+            }
+            return count;
+        }
+        
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             if (TextHasChanged == false)
@@ -109,14 +124,12 @@ namespace NotePadWF_CS
                 TextHasChanged = true;
             }
 
-            int Count = System.Text.RegularExpressions.Regex.Matches(richTextBox1.Text, @"[\S]+").Count;
+            int Count = WordCount(richTextBox1.Text);
             wordCountToolStripStatusLabel.Text = Count.ToString() + " word";
             if (Count > 1)
             {
                 wordCountToolStripStatusLabel.Text += "s";
             }
- 
-            ChangePositionToolStripStatusLabel();
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -710,6 +723,11 @@ namespace NotePadWF_CS
             }
             else
                 MessageBox.Show("Cannot find '" + FindTextString + "'", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void richTextBox1_SelectionChanged(object sender, EventArgs e)
+        {
+            ChangePositionToolStripStatusLabel();
         }
     }
 }
