@@ -2,7 +2,7 @@
 
 **(C#/.NET Framework 4.7x/Windows Forms version)**
 
-![.NETpad hero image](/graphics/hero.jpg)
+![.NETpad hero image](docs/screenshots/hero.jpg)
 
 .NETpad is a basic clone of Microsoft Notepad that was created by Paul Thurrott ([@thurrott](https://www.twitter.com/thurrott)) with the help of Rafael Rivera ([@withinrafael](https://www.twitter.com/withinrafael)), several outside contributors, and, thanks to his books, Charles Petzold. It is technologically unsophisticated and has many bugs. But .NETpad provides most Notepad features, albeit in U.S. English only, and adds a few additional features that Notepad lacks, including:
 
