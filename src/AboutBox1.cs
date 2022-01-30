@@ -37,11 +37,7 @@ namespace NotePadWF_CS
                         return titleAttribute.Title;
                     }
                 }
-#if NETFRAMEWORK
-                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
-#else
                 return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location);
-#endif
             }
         }
 

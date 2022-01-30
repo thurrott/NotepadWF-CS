@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.Net.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net472;net6-windows</TargetFrameworks>
+    <TargetFramework>net6-windows</TargetFramework>
     <OutputType>winexe</OutputType>
     <RootNamespace>NotePadWF_CS</RootNamespace>
     <AssemblyName>.NETpad</AssemblyName>
@@ -14,7 +14,6 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'" />
     <PackageReference Include="System.Resources.Extensions" Version="6.0.0" /> 
   </ItemGroup>
   <ItemGroup>
