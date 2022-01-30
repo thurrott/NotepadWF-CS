@@ -1,19 +1,28 @@
 ﻿<Project Sdk="Microsoft.Net.Sdk">
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFrameworks>net472;net6-windows</TargetFrameworks>
     <OutputType>winexe</OutputType>
     <RootNamespace>NotePadWF_CS</RootNamespace>
     <AssemblyName>.NETpad</AssemblyName>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <ApplicationIcon>Hopstarter-Sleek-Xp-Software-Notepad.ico</ApplicationIcon>
     <Description>A Notepad replacement written in C#, .NET Framework 4.7x, and Windows Forms</Description>
     <Company>Paul Thurrott</Company>
     <Copyright>Copyright © 2022 Paul Thurrott</Copyright>
     <UseWindowsForms>true</UseWindowsForms>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic" Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'" />
     <PackageReference Include="System.Resources.Extensions" Version="6.0.0" /> 
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+    </None>
   </ItemGroup>
 </Project>

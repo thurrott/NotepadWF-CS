@@ -368,17 +368,22 @@ namespace NotePadWF_CS
             {
                 if (richTextBox1.SelectedText.Length != 0)
                 {
-                    Process.Start("https://www.bing.com/search?q=" + richTextBox1.SelectedText);
+                    LaunchBrowser("https://www.bing.com/search?q=" + richTextBox1.SelectedText);
                 }
                 else
                 {
-                    Process.Start("https://www.bing.com");
+                    LaunchBrowser("https://www.bing.com");
                 }
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private static void LaunchBrowser(string url)
+        {
+            Process.Start(new ProcessStartInfo("cmd", $"/c start {url}"));
         }
 
         private void goToToolStripMenuItem_Click(object sender, EventArgs e)
