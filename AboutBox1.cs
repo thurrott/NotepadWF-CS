@@ -20,7 +20,7 @@ namespace NotePadWF_CS
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            this.textBoxDescription.Text = Properties.Strings.AppDescription;
         }
 
         #region Assembly Attribute Accessors
