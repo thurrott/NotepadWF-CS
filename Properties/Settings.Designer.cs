@@ -118,5 +118,17 @@ namespace NotePadWF_CS.Properties {
                 this["MySize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Auto")]
+        public string MyLanguage {
+            get {
+                return ((string)(this["MyLanguage"]));
+            }
+            set {
+                this["MyLanguage"] = value;
+            }
+        }
     }
 }

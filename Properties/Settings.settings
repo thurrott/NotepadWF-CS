@@ -26,5 +26,8 @@
     <Setting Name="MySize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">1200, 800</Value>
     </Setting>
+    <Setting Name="MyLanguage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Auto</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
