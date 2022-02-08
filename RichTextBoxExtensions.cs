@@ -5,7 +5,7 @@ namespace NotePadWF_CS
     internal static class RichTextBoxExtensions
     {
         /// <summary>
-        /// Set's the beeping on a RichTextBox.
+        /// Sets the beeping on a RichTextBox.
         /// </summary>
         /// <remarks>
         /// https://stackoverflow.com/questions/4683663/how-to-remove-annoying-beep-with-richtextbox
