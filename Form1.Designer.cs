@@ -580,6 +580,7 @@
             // 
             this.saveFileDialog1.DefaultExt = "txt";
             resources.ApplyResources(this.saveFileDialog1, "saveFileDialog1");
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
             // openFileDialog1
             // 

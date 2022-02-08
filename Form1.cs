@@ -34,6 +34,7 @@ namespace NotePadWF_CS
 
             InitializeComponent();
             initializeLanguageMenu();
+            richTextBox1.SetBeeping(false);
         }
 
         private void initializeLanguageMenu()
