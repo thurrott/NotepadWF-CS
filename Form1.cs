@@ -24,6 +24,7 @@ namespace NotePadWF_CS
         public Form1()
         {
             InitializeComponent();
+            richTextBox1.SetBeeping(false);
         }
 
         private void Form1_Load(object sender, EventArgs e)
