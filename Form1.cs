@@ -25,6 +25,9 @@ namespace NotePadWF_CS
         {
             InitializeComponent();
             richTextBox1.SetBeeping(false);
+            richTextBox1.AllowDrop = true;
+            richTextBox1.DragEnter += RichTextBox1_DragEnter;
+            richTextBox1.DragDrop += RichTextBox1_DragDrop;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -760,5 +763,19 @@ namespace NotePadWF_CS
             else
                 MessageBox.Show("Cannot find '" + FindTextString + "'", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void RichTextBox1_DragDrop(object sender, DragEventArgs e)
+        {
+            richTextBox1.SelectedText = e.Data.GetData(DataFormats.Text).ToString();
+        }
+
+        private void RichTextBox1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.Text))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
     }
 }
