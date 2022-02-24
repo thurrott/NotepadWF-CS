@@ -101,8 +101,8 @@ namespace NotePadWF_CS
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {        
-            Text = Application.ProductName;
+        {
+            Text = "Untitled - " + Application.ProductName;
             aboutToolStripMenuItem.Text = String.Format("{0} {1}", Properties.Strings.About, Application.ProductName);
 
             Location = Properties.Settings.Default.MyLocation;
@@ -112,8 +112,20 @@ namespace NotePadWF_CS
             }
 
             richTextBox1.Font = Properties.Settings.Default.MyFont;
+            
+            // Configure themes
             richTextBox1.ForeColor = Properties.Settings.Default.MyTextColor;
             richTextBox1.BackColor = Properties.Settings.Default.MyBackgroundColor;
+            
+            if ((richTextBox1.ForeColor == Color.Black) & (richTextBox1.BackColor == Color.White))
+                blackOnWhiteDefaultToolStripMenuItem.Checked = true;
+            if ((richTextBox1.ForeColor == Color.Black) & (richTextBox1.BackColor == Color.LightGray))
+                blackOnLightGrayToolStripMenuItem.Checked = true;
+            if ((richTextBox1.ForeColor == Color.Orange) & (richTextBox1.BackColor == Color.Black))
+                amberOnBlackToolStripMenuItem.Checked = true;
+            if ((richTextBox1.ForeColor == Color.LightGreen) & (richTextBox1.BackColor == Color.Black))
+                greenOnBlackToolStripMenuItem.Checked = true;
+
             richTextBox1.WordWrap = Properties.Settings.Default.MyWordWrap;
             wordWrapToolStripMenuItem.Checked = Properties.Settings.Default.MyWordWrap;
             if (richTextBox1.WordWrap == true)
@@ -184,6 +196,7 @@ namespace NotePadWF_CS
             }
 
             int Count = System.Text.RegularExpressions.Regex.Matches(richTextBox1.Text, @"[\S]+").Count;
+            
             if (Count > 1)
             {
                 wordCountToolStripStatusLabel.Text = String.Format("{0} {1}", Count, Properties.Strings.Words);
@@ -363,24 +376,48 @@ namespace NotePadWF_CS
         {
             richTextBox1.ForeColor = Color.Black;
             richTextBox1.BackColor = Color.White;
+
+            // Check/uncheck the themes
+            blackOnWhiteDefaultToolStripMenuItem.Checked = true;
+            blackOnLightGrayToolStripMenuItem.Checked = false;
+            amberOnBlackToolStripMenuItem.Checked = false;
+            greenOnBlackToolStripMenuItem.Checked = false;
         }
 
         private void blackOnLightGrayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.ForeColor = Color.Black;
             richTextBox1.BackColor = Color.LightGray;
+
+            // Check/uncheck the themes
+            blackOnWhiteDefaultToolStripMenuItem.Checked = false;
+            blackOnLightGrayToolStripMenuItem.Checked = true;
+            amberOnBlackToolStripMenuItem.Checked = false;
+            greenOnBlackToolStripMenuItem.Checked = false;
         }
 
         private void amberOnBlackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.ForeColor = Color.Orange;
             richTextBox1.BackColor = Color.Black;
+
+            // Check/uncheck the themes
+            blackOnWhiteDefaultToolStripMenuItem.Checked = false;
+            blackOnLightGrayToolStripMenuItem.Checked = false;
+            amberOnBlackToolStripMenuItem.Checked = true;
+            greenOnBlackToolStripMenuItem.Checked = false;
         }
 
         private void greenOnBlackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.ForeColor = Color.LightGreen;
             richTextBox1.BackColor = Color.Black;
+
+            // Check/uncheck the themes
+            blackOnWhiteDefaultToolStripMenuItem.Checked = false;
+            blackOnLightGrayToolStripMenuItem.Checked = false;
+            amberOnBlackToolStripMenuItem.Checked = false;
+            greenOnBlackToolStripMenuItem.Checked = true;
         }
 
         private void selectTextColorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -390,6 +427,12 @@ namespace NotePadWF_CS
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 richTextBox1.ForeColor = colorDialog1.Color;
+
+                // Uncheck the themes
+                blackOnWhiteDefaultToolStripMenuItem.Checked = false;
+                blackOnLightGrayToolStripMenuItem.Checked = false;
+                amberOnBlackToolStripMenuItem.Checked = false;
+                greenOnBlackToolStripMenuItem.Checked = false;
             }
         }
 
@@ -400,6 +443,12 @@ namespace NotePadWF_CS
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 richTextBox1.BackColor = colorDialog1.Color;
+
+                // Uncheck the themes
+                blackOnWhiteDefaultToolStripMenuItem.Checked = false;
+                blackOnLightGrayToolStripMenuItem.Checked = false;
+                amberOnBlackToolStripMenuItem.Checked = false;
+                greenOnBlackToolStripMenuItem.Checked = false;
             }
         }
 
