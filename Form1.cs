@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
+using System.Resources;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 
@@ -23,14 +27,83 @@ namespace NotePadWF_CS
 
         public Form1()
         {
+            if (Properties.Settings.Default.MyLanguage != "Auto")
+            {
+                CultureInfo.CurrentUICulture = new CultureInfo(Properties.Settings.Default.MyLanguage);
+            }
+
             InitializeComponent();
+            initializeLanguageMenu();
             richTextBox1.SetBeeping(false);
+        }
+
+        private void initializeLanguageMenu()
+        {
+            var languages = AvailableLanguages();
+
+            languageToolStripSeparator.Visible = languages.Count > 0;
+            
+            foreach (var language in languages)
+            {
+                var item = languageToolStripMenuItem.DropDownItems.Add(language.name);
+                item.Click += (object sender, EventArgs args) => 
+                {
+                    foreach (var menuItem in languageToolStripMenuItem.DropDownItems)
+                        if (menuItem is ToolStripMenuItem t)
+                            t.Checked = false;
+                    ((ToolStripMenuItem)item).Checked = true;
+
+                    Properties.Settings.Default.MyLanguage = language.identifier; 
+                    Properties.Settings.Default.Save();
+
+                    MessageBox.Show(this, Properties.Strings.LanguageChangedMessage, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information );
+                };
+
+                if(language.identifier == Properties.Settings.Default.MyLanguage)
+                {
+                    ((ToolStripMenuItem)item).Checked = true;
+                    autoToolStripMenuItem.Checked = false;
+                }
+            }
+        }
+
+        
+
+        List<(string identifier, string name )> AvailableLanguages()
+        {
+            ResourceManager rm = new ResourceManager(typeof(Properties.Strings));
+
+            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+            List<(string identifier, string name)> languages = new List<(string identifier, string name)>();
+            foreach (CultureInfo culture in cultures)
+            {
+                try
+                {
+                    using (ResourceSet rs = rm.GetResourceSet(culture, true, false))
+                    { 
+                        if (rs != null)
+                        {
+                            if(culture.TwoLetterISOLanguageName != "iv")
+                                languages.Add((culture.TwoLetterISOLanguageName, culture.DisplayName));
+                            rs.Close();
+
+                        }
+                    }
+                }
+                catch (CultureNotFoundException exc)
+                {
+                }
+            }
+
+           
+            return languages;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Text = "Untitled - " + Application.ProductName;
-            aboutToolStripMenuItem.Text = "About " + Application.ProductName;
+            Text = String.Format("{0} - {1}", Properties.Strings.Untitled, Application.ProductName);
+            aboutToolStripMenuItem.Text = String.Format("{0} {1}", Properties.Strings.About, Application.ProductName);
 
             Location = Properties.Settings.Default.MyLocation;
             if (!Properties.Settings.Default.MySize.IsEmpty)
@@ -70,12 +143,12 @@ namespace NotePadWF_CS
             if (autoSaveToolStripMenuItem.Checked)
             {
                 timer1.Enabled = true;
-                autoSaveToolStripStatusLabel.Text = "Auto Save: On";
+                autoSaveToolStripStatusLabel.Text = String.Format("{0}: {1}", Properties.Strings.AutoSave, Properties.Strings.On);
             }
             else
             {
                 timer1.Enabled = false;
-                autoSaveToolStripStatusLabel.Text = "Auto Save: Off";
+                autoSaveToolStripStatusLabel.Text = String.Format("{0}: {1}", Properties.Strings.AutoSave, Properties.Strings.Off);
             }
         }
 
@@ -95,7 +168,7 @@ namespace NotePadWF_CS
 
             if (TextHasChanged)
             {
-                DialogResult SavePrompt = MessageBox.Show("Do you want to save changes?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                DialogResult SavePrompt = MessageBox.Show(Properties.Strings.SaveChangesQuestion, Application.ProductName, MessageBoxButtons.YesNoCancel);
                 switch(SavePrompt)
                 {
                     case DialogResult.Yes:
@@ -123,12 +196,14 @@ namespace NotePadWF_CS
             }
 
             int Count = System.Text.RegularExpressions.Regex.Matches(richTextBox1.Text, @"[\S]+").Count;
-            wordCountToolStripStatusLabel.Text = Count.ToString() + " word";
+            
             if (Count > 1)
             {
-                wordCountToolStripStatusLabel.Text += "s";
+                wordCountToolStripStatusLabel.Text = String.Format("{0} {1}", Count, Properties.Strings.Words);
             }
- 
+            else
+                wordCountToolStripStatusLabel.Text = String.Format("{0} {1}", Count, Properties.Strings.Word);
+
             ChangePositionToolStripStatusLabel();
         }
 
@@ -139,10 +214,11 @@ namespace NotePadWF_CS
 
         private void ChangePositionToolStripStatusLabel()
         {
-            positionToolStripStatusLabel.Text = " Ln " +
-                (richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart) + 1).ToString()
-                + ", Col " +
-                (richTextBox1.SelectionStart - richTextBox1.GetFirstCharIndexFromLine(richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart)) + 1).ToString();
+            positionToolStripStatusLabel.Text = String.Format(" {0} {1}, {2} {3}", Properties.Strings.LocationLine,
+                (richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart) + 1),
+                Properties.Strings.LocationColumn,
+                (richTextBox1.SelectionStart - richTextBox1.GetFirstCharIndexFromLine(richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart)) + 1)
+                );
         }
 
         private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
@@ -173,7 +249,7 @@ namespace NotePadWF_CS
         {
             if (TextHasChanged)
             {
-                DialogResult SavePrompt = MessageBox.Show("Do you want to save changes?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                DialogResult SavePrompt = MessageBox.Show(Properties.Strings.SaveChangesQuestion, Application.ProductName, MessageBoxButtons.YesNoCancel);
                 if (SavePrompt == DialogResult.Yes)
                     saveFileDialog1.ShowDialog();
                 else if (SavePrompt == DialogResult.No)
@@ -185,7 +261,7 @@ namespace NotePadWF_CS
             }
             TextHasChanged = false;
             DocumentName = "";
-            Text = "Untitled - " + Application.ProductName;
+            Text = String.Format("{0} - {1}", Properties.Strings.Untitled, Application.ProductName);
         }
 
         private void newWindowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -434,7 +510,7 @@ namespace NotePadWF_CS
         {
             try
             {
-                int LineNum = Convert.ToInt32(Interaction.InputBox("Line number:", "Go to line", "", Location.X + 200, Location.Y + 300));
+                int LineNum = Convert.ToInt32(Interaction.InputBox(Properties.Strings.LineNumber, Properties.Strings.GoToLine, "", Location.X + 200, Location.Y + 300));
                 if (LineNum <= richTextBox1.Lines.Length)
                 {
                     richTextBox1.SelectionStart = richTextBox1.GetFirstCharIndexFromLine(LineNum - 1);
@@ -443,7 +519,7 @@ namespace NotePadWF_CS
                 }
                 else
                 {
-                    MessageBox.Show("The line number is beyond the total number of lines", "Go to line");
+                    MessageBox.Show(Properties.Strings.LineOverflow, Properties.Strings.GoToLine);
                     goToToolStripMenuItem_Click(this, e);
                 }
             }
@@ -624,10 +700,11 @@ namespace NotePadWF_CS
                 // Uncheck it, disable auto save, disable timer
                 // DialogResult Result = MessageBox.Show("Click OK to disable Auto Save.", "Disable Auto Save", MessageBoxButtons.OKCancel);
                 // if (Result == DialogResult.OK)
-                if (MessageBox.Show("Click OK to disable Auto Save.", "Disable Auto Save", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show(Properties.Strings.DisableAutoSaveMessage, Properties.Strings.DisableAutoSave, MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     autoSaveToolStripMenuItem.Checked = false;
-                    autoSaveToolStripStatusLabel.Text = "Auto Save: Off";
+                    autoSaveToolStripStatusLabel.Text = String.Format("{0}: {1}", Properties.Strings.AutoSave, Properties.Strings.Off);
+
                 }
                 else
                 {
@@ -639,10 +716,10 @@ namespace NotePadWF_CS
                 // Check it, enable auto save, reset the timer
                 // DialogResult Result = MessageBox.Show("Click OK to automatically save your document every 30 seconds.", "Enable Auto Save", MessageBoxButtons.OKCancel);
                 // if (Result == DialogResult.OK)
-                if (MessageBox.Show("Click OK to automatically save your document every 30 seconds.", "Enable Auto Save", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show(Properties.Strings.EnableAutoSaveMessage, Properties.Strings.EnableAutoSave, MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                     autoSaveToolStripMenuItem.Checked = true;
-                    autoSaveToolStripStatusLabel.Text = "Auto Save: On";
+                    autoSaveToolStripStatusLabel.Text = String.Format("{0}: {1}", Properties.Strings.AutoSave, Properties.Strings.On);
                     timer1.Enabled = true;
                 }
             }
@@ -706,12 +783,12 @@ namespace NotePadWF_CS
             if (FindLastIndexFound > -1)
                 richTextBox1.Select(FindLastIndexFound, FindTextString.Length);
             else
-                MessageBox.Show("Cannot find '" + FindTextString + "'", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Properties.Strings.CannotFind +  " '" + FindTextString + "'", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void findToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FindTextString = Interaction.InputBox("Find what:", "Find", richTextBox1.SelectedText, Location.X + 200, Location.Y + 300);
+            FindTextString = Interaction.InputBox(Properties.Strings.FindWhat, Properties.Strings.Find, richTextBox1.SelectedText, Location.X + 200, Location.Y + 300);
             // Find the text from the current cursor position
             FindTextIndex(richTextBox1.SelectionStart, false);
             FindTheText();
@@ -731,8 +808,8 @@ namespace NotePadWF_CS
 
         private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string FindWhat = Interaction.InputBox("Find what:", "Replace", richTextBox1.SelectedText, Location.X + 200, Location.Y + 300);
-            string ReplaceWith = Interaction.InputBox("Replace with:", "Replace", "", Location.X + 200, Location.Y + 300);
+            string FindWhat = Interaction.InputBox(Properties.Strings.FindWhat, Properties.Strings.Replace, richTextBox1.SelectedText, Location.X + 200, Location.Y + 300);
+            string ReplaceWith = Interaction.InputBox(Properties.Strings.ReplaceWith, Properties.Strings.Replace, "", Location.X + 200, Location.Y + 300);
 
             FindTextString = FindWhat;
             // Find text from current cursor position
@@ -741,13 +818,13 @@ namespace NotePadWF_CS
             if (FindLastIndexFound > -1)
                 richTextBox1.Text = richTextBox1.Text.Substring(0, FindLastIndexFound) + ReplaceWith + richTextBox1.Text.Substring(FindLastIndexFound + FindTextString.Length);
             else
-                MessageBox.Show("Cannot find '" + FindTextString + "'", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Properties.Strings.CannotFind + " '" + FindTextString + "'", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void replaceAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string FindWhat = Interaction.InputBox("Find what:", "Replace all", richTextBox1.SelectedText, Location.X + 200, Location.Y + 300);
-            string ReplaceWith = Interaction.InputBox("Replace with:", "Replace all", "", Location.X + 200, Location.Y + 300);
+            string FindWhat = Interaction.InputBox(Properties.Strings.FindWhat, Properties.Strings.ReplaceAll, richTextBox1.SelectedText, Location.X + 200, Location.Y + 300);
+            string ReplaceWith = Interaction.InputBox(Properties.Strings.ReplaceWith, Properties.Strings.ReplaceAll, "", Location.X + 200, Location.Y + 300);
 
             FindTextString = FindWhat;
             FindTextIndex(0, false);
@@ -758,7 +835,21 @@ namespace NotePadWF_CS
                 richTextBox1.Text = NewText;
             }
             else
-                MessageBox.Show("Cannot find '" + FindTextString + "'", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Properties.Strings.CannotFind + " '" + FindTextString + "'", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void autoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.MyLanguage = "Auto";
+            Properties.Settings.Default.Save();
+           
+            foreach(var item in languageToolStripMenuItem.DropDownItems)
+                if(item is ToolStripMenuItem t)
+                    t.Checked = false;
+
+            autoSaveToolStripMenuItem.Checked = true;
+            MessageBox.Show(this, Properties.Strings.LanguageChangedMessage, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }
