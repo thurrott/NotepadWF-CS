@@ -102,7 +102,7 @@ namespace NotePadWF_CS
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Text = "Untitled - " + Application.ProductName;
+            Text = String.Format("{0} - {1}", Properties.Strings.Untitled, Application.ProductName);
             aboutToolStripMenuItem.Text = String.Format("{0} {1}", Properties.Strings.About, Application.ProductName);
 
             Location = Properties.Settings.Default.MyLocation;
